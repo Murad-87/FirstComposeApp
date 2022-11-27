@@ -7,7 +7,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -24,43 +27,32 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
+            LazyColumn(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxSize()
             ) {
-                CircleItem()
+                itemsIndexed(
+                    listOf(
+                        "More",
+                        "Check",
+                        "Back",
+                        "End",
+                        "Stop",
+                        "Crazy",
+                        "My dart",
+                        "Bananas",
+                        "Potter",
+                        "Harry",
+                        "Moscow"
+                    )
+                ) { _, item ->
+                    Text(
+                        text = item,
+                        fontSize = 30.sp,
+                        modifier = Modifier.padding(vertical = 10.dp)
+                    )
+                }
             }
         }
     }
-}
-
-@Composable
-private fun CircleItem() {
-    val counter = remember {
-        mutableStateOf(0)
-    }
-
-    val color = remember {
-        mutableStateOf(Color.Blue)
-    }
-
-    Box(
-        modifier = Modifier
-            .size(100.dp)
-            .background(color = color.value, shape = CircleShape)
-            .clickable {
-                when(++counter.value) {
-                    10 -> color.value = Color.Red
-                    20 -> color.value = Color.Green
-                }
-
-            },
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = counter.value.toString(),
-            style = TextStyle(color = Color.White, fontSize = 25.sp)
-        )
-    }
-
 }
