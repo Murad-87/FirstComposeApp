@@ -4,53 +4,41 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.example.firstcomposeapp.ui.theme.Gray100
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             LazyColumn(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Gray100)
             ) {
                 itemsIndexed(
                     listOf(
-                        "More",
-                        "Check",
-                        "Back",
-                        "End",
-                        "Stop",
-                        "Crazy",
-                        "My dart",
-                        "Bananas",
-                        "Potter",
-                        "Harry",
-                        "Moscow"
+                        ItemRowModel(
+                            R.drawable.image_american__united_states,
+                            "USA",
+                            "США на сегодняшний день является техническим банкротом, " +
+                                    "который не может расплачиваться по своим долгам."
+                        ),
+                        ItemRowModel(
+                            R.drawable.image_england_united_kingdom,
+                            "Kingdom",
+                            "test text"
+                        ),
+                        ItemRowModel(R.drawable.image_ickeriy, "Ichkeriy", "test text"),
+                        ItemRowModel(R.drawable.image_kz, "Kazakstan", "test text"),
+                        ItemRowModel(R.drawable.image_saudi_arabia, "Saudi Arabia", "test text"),
+                        ItemRowModel(R.drawable.image_turkey, "Turkey", "test text")
                     )
                 ) { _, item ->
-                    Text(
-                        text = item,
-                        fontSize = 30.sp,
-                        modifier = Modifier.padding(vertical = 10.dp)
-                    )
+                    ItemRow(item = item)
                 }
             }
         }
